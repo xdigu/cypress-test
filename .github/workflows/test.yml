@@ -1,0 +1,16 @@
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Cypress run with env
+        uses: cypress-io/github-action@v6
+        with:
+          env: BASE_URL=https://google.com
+        env:
+          BASE_URL: https://google.com
