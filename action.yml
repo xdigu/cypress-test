@@ -10,11 +10,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-    #   - name: "Print Hello World"
-    #     run: bash $GITHUB_ACTION_PATH/entrypoint.sh
-    #     env:
-    #       BASE_URL: ${{ inputs.base_url }}
-    #     shell: bash
     - name: Checkout
       uses: actions/checkout@v4
 
@@ -22,6 +17,9 @@ runs:
       uses: cypress-io/github-action@v6
       with:
         env: BASE_URL=${{ inputs.base_url }}
+        project: ./cypress
+      env:
+        BASE_URL: ${{ inputs.base_url }}
 
 branding:
   icon: terminal
