@@ -17,7 +17,7 @@ runs:
       uses: cypress-io/github-action@v6
       with:
         env: BASE_URL=${{ inputs.base_url }}
-        project: ./cypress
+        project: $GITHUB_ACTION_PATH
       env:
         BASE_URL: ${{ inputs.base_url }}
 
