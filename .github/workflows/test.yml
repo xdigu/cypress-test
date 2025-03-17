@@ -1,5 +1,9 @@
 on:
-  workflow_dispatch:
+  workflow_call:
+    inputs:
+      base_url:
+        required: true
+        type: string
 
 jobs:
   test:
@@ -11,4 +15,4 @@ jobs:
       - name: Cypress run with env
         uses: cypress-io/github-action@v6
         env:
-          BASE_URL: https://google.com
+          BASE_URL: ${{ inputs.base_url }}
