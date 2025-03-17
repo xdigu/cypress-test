@@ -15,6 +15,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - uses: actions/checkout@v4
+        with:
+          repository: 'xdigu/cypress-test'
+          path: 'cypress-test'
+          ref: 'main'
+      
+      - name: Print config file
+        run: |  
+          ls -l ./
+      
+      - name: Print config file
+        run: |  
+          ls -l cypress-test
+
       # cache npm modules and Cypress binary folder
       # we can use "package-lock.json" as the key file
       # to make sure we use the precise Cypress version
