@@ -1,0 +1,29 @@
+name: "Run cypress"
+description: "Run cypress."
+
+inputs:
+  base_url:
+    description: "base url"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Generate cypress folder
+      id: cypress_folder
+      shell: bash
+      run: |
+        echo "work_dir=cypress-test" >> "$GITHUB_OUTPUT"
+
+    - uses: actions/checkout@v4
+      with:
+        repository: "xdigu/cypress-test"
+        path: ${{ steps.cypress_folder.outputs.work_dir }}
+        ref: "main"
+
+    - name: Cypress run with env
+      uses: cypress-io/github-action@v6
+      with:
+        working-directory: ${{ steps.cypress_folder.outputs.work_dir }}
+      env:
+        BASE_URL: ${{ inputs.base_url }}
