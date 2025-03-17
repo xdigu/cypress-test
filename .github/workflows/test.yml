@@ -31,6 +31,6 @@ jobs:
       - name: Cypress run with env
         uses: cypress-io/github-action@v6
         with:
-          project: ./
+          project: ${{ github.action_path }}
         env:
           BASE_URL: ${{ inputs.base_url }}
