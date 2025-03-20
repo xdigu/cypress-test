@@ -12,6 +12,11 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: checkout
+      uses: actions/checkout@v4
+      with:
+        repository: "xdigu/cypress-test"
+
     - name: Hello world
       if: ${{ contains(inputs.environment, 'test') }}
       uses: ./.github/actions/hello-world
