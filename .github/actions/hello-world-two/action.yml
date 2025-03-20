@@ -1,0 +1,10 @@
+name: "Run cypress"
+description: "Run cypress."
+
+runs:
+  using: "composite"
+  steps:
+    - name: Hello world
+      shell: bash
+      run: |
+        echo "hello world"
