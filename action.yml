@@ -15,6 +15,11 @@ runs:
       run: |
         echo "work_dir=cypress-test" >> "$GITHUB_OUTPUT"
 
+    - name: Hello world
+      shell: bash
+      run: |
+        echo "hello world"
+
     - uses: actions/checkout@v4
       with:
         repository: "xdigu/cypress-test"

@@ -12,11 +12,16 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - name: Hello world
+        shell: bash
+        run: |
+          echo "hello world"
+
       - uses: actions/checkout@v4
         with:
-          repository: 'xdigu/cypress-test'
+          repository: "xdigu/cypress-test"
           path: ${{ github.env.WORK_DIR }}
-          ref: 'main'
+          ref: "main"
 
       - name: Cypress run with env
         uses: cypress-io/github-action@v6
