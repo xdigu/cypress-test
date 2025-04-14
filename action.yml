@@ -5,41 +5,17 @@ inputs:
   base_url:
     description: "base url"
     required: true
-  environment:
-    description: ""
-    required: false
 
 runs:
   using: "composite"
+
   steps:
-    - name: checkout
+    - name: Checkout code
       uses: actions/checkout@v4
       with:
         repository: "xdigu/cypress-test"
-
-    - name: Hello world
-      if: ${{ contains(inputs.environment, 'test') }}
-      uses: ./.github/actions/hello-world
-
-    - name: Generate cypress folder
-      if: ${{ !contains(inputs.environment, 'test') }}
-      id: cypress_folder
-      shell: bash
-      run: |
-        echo "work_dir=cypress-test" >> "$GITHUB_OUTPUT"
-
-    - name: checkout
-      if: ${{ !contains(inputs.environment, 'test') }}
-      uses: actions/checkout@v4
-      with:
-        repository: "xdigu/cypress-test"
-        path: ${{ steps.cypress_folder.outputs.work_dir }}
-        ref: "main"
 
     - name: Cypress run with env
-      if: ${{ !contains(inputs.environment, 'test') }}
       uses: cypress-io/github-action@v6
-      with:
-        working-directory: ${{ steps.cypress_folder.outputs.work_dir }}
       env:
         BASE_URL: ${{ inputs.base_url }}

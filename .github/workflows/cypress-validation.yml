@@ -9,15 +9,12 @@ env:
   WORK_DIR: cypress-test
 
 jobs:
-  test:
+  cypress-validation:
     runs-on: ubuntu-latest
-    steps:
-      - name: Hello world
-        shell: bash
-        run: |
-          echo "hello world"
 
-      - uses: actions/checkout@v4
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
         with:
           repository: "xdigu/cypress-test"
           path: ${{ github.env.WORK_DIR }}
