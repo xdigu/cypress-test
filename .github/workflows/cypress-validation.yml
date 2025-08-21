@@ -13,20 +13,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: list dir
-        shell: bash
-        run: ls -la ${{ github.action_path }}
-
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          repository: "xdigu/cypress-test"
-          path: ${{ github.env.WORK_DIR }}
-          ref: "main"
-
       - name: Cypress run with env
         uses: cypress-io/github-action@v6
         with:
-          working-directory: ${{ github.env.WORK_DIR }}
+          working-directory: ${{ github.action_path }}
         env:
           BASE_URL: ${{ inputs.base_url }}
