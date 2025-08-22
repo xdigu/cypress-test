@@ -1,0 +1,24 @@
+name: Validate pull request
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "**.js"
+
+jobs:
+  validate-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout current branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Cypress run with env
+        uses: cypress-io/github-action@v6
+        with:
+          working-directory: ${{ github.env.WORK_DIR }}
+        env:
+          BASE_URL: ${{ vars.BASE_URL }}
