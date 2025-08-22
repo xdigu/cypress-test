@@ -3,3 +3,9 @@ describe("template spec", () => {
     cy.visit("/");
   });
 });
+
+describe("template spec two", () => {
+  it("passes", () => {
+    cy.visit("/");
+  });
+});
